@@ -1,0 +1,105 @@
+h1. Rails3-Devise-BaseCampLike-Subdomains-With-CanCan-and-Invitable
+
+Use this project as a starting point for a Rails 3 application that uses basecamp-like subdomains and authentication. User management and authentication is implemented using "Devise":http://github.com/plataformatec/devise.
+
+Authorization is implemented using "CanCan":http://github.com/ryanb/cancan.
+
+Invitations are implement using "Devise Invitable":http://github.com/scambra/devise_invitable
+
+As a starting point, all Devise options are not implemented. eMail is restricted to local host. Confirmable is not used, but should be turned on once mail is set up. There are also features that should be removed when used for a real application. From the root domain you can list all users and subdomains(accounts) and visit those users or subdomains.
+
+This got its start with "fortuity/Rails3-Subdomain-Devise":http://github.com/fortuity/rails3-subdomain-devise/ that provided a subdomain support starting point (any user could create a new subdomain).
+
+The initial basecamp like version was a fork of the above. "salex/Rails3-Subdomain-Devise":http://github.com/salex/rails3-subdomain-devise/.
+
+While that version works, there were some business rules I wanted to implement that made it more like basecamp. To implement those rules, CanCan and Devise Invitable are used. Code was also stollen from links on the Devise wiki to implement several features.
+
+h3. The rules
+
+* You can only register or sign-up at the root domain.
+** The application will generate an alert if sign-in is attempted from a subdomain
+** Sign-in requires a subdomain or account name. It must be unique and non blank.
+** If the account name is unique, the account is created and the new user becomes the site admin
+* New users must be invited by the site admin to register for that subdomain
+* Login can be either by eMail and login, which is the email name if unique.
+* Login is unique across all subdomains
+* A user who tries to login to another subdomain will be rejected
+* The site admin can edit members, which is a model inherited from user
+** Members link added to menubar if site admin.
+** Site admin can set roles on the edit page.
+** Roles implementation is just a simple text field and check with include?, so should be unique. Roll your own if you need more.
+* A user who logs into the root domain, will be signed off the root domain, redirected to their domain with a token, and logged in to their subdomain. 
+* There are no cross domain sessions, you can only start a session in your subdomain.
+* Attempts at url modifications (show member/user from another domain) should be rejected by CanCan
+
+h4. Basic models
+
+<pre>
+	class Account < ActiveRecord::Base
+	  has_many :users
+		#name is subdomain name
+	end
+	class User < ActiveRecord::Base
+	  belongs_to :account
+	end
+	class Member < User
+		#used for admin to manage users
+	end
+	class Site < Account
+		#used to define a site(subdomain) home page that differs from the root domain home page. 
+	end
+	
+</pre>
+
+h3. Installation 
+
+* git clone or fork
+* bundle install
+* rake db:create
+* rake db:schema:load
+* rake db:seed
+
+h2. Disclaimer
+
+Everyone knows that engineers can't write... I <span style="border-bottom: dotted green 3px">is</span> an engineer! That includes not only English, but code.
+
+Rails and Ruby has been a trip from someone who started with Fortran, Basic and 6502 assembler. I don't consider myself a novice, but certainly not an expert. I tried to solicit help in some areas, like is:
+
+<pre>
+  def after_sign_in_path_for(resource_or_scope)
+    scope = Devise::Mapping.find_scope!(resource_or_scope)
+    account_name = current_user.account.name
+    if current_account.nil? 
+      # logout of root domain and login by token to account
+      token =  Devise.friendly_token
+      current_user.loginable_token = token
+      current_user.save
+      sign_out(current_user)
+      flash[:notice] = nil
+      home_path = valid_user_url(token, :account => account_name)
+      return home_path 
+    else
+      if account_name != current_account.name 
+        # user not part of current_account
+        sign_out(current_user)
+        flash[:notice] = nil
+        flash[:alert] = "Sorry, invalid user or password for account"
+      end
+    end
+    super
+  end
+</pre>
+
+the best way to redirect a sign-in from the root domain to a users subdomain. It works, but not sure if there are better ways.
+
+There are probably a few other areas where code can be improved. You are welcome to fork the project and add any improvements and send me a pull request. 
+
+If you add any features or different set of business rules, I may just point to your fork.
+
+While this is just a demo, I couldn't stand no CSS. I added just a little, mainly a reset and then a few things for lists etc.
+
+h2. License
+
+h3. Public Domain Dedication
+
+This work is a compilation and derivation from other previously released works. With the exception of various included works, which may be restricted by other licenses, the author or authors of this code dedicate any and all copyright interest in this code to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this code under copyright law.

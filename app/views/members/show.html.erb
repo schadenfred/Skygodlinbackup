@@ -1,0 +1,29 @@
+
+<p>
+  <b>Login:</b>
+  <%= @member.login %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @member.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @member.email %>
+</p>
+
+<p>
+  <b>Sign in count:</b>
+  <%= @member.sign_in_count %>
+</p>
+
+<p>
+  <b>Roles:</b>
+  <%= @member.roles %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
