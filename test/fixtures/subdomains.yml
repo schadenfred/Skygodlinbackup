@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: foo
-  user_id: 1
-
-two:
-  name: bar
-  user_id: 2
