@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title= title
+    = csrf_meta_tag
+    = render 'layouts/stylesheets'
+  %body
+    .container
+      = render 'layouts/header'
+      %section.round
+        %p{:style => "color: green"}= notice
+        %p{:style => "color: red"}= alert
+        = yield
+      = render 'layouts/footer'
+

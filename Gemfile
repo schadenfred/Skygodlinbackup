@@ -6,6 +6,10 @@ gem 'devise',           '~> 1.1.3'
 gem 'devise_invitable', '~> 0.3.4'
 gem 'cancan'
 gem 'compass'
-# uncomment the next line if you wish to deploy to Heroku
-# gem 'heroku', '1.10.8', :group => :development
+gem 'haml'
+gem 'haml-rails'
+
+group :develpment do
+    gem 'heroku'
+end
 
