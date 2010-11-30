@@ -6,11 +6,10 @@
     = render 'layouts/stylesheets'
   %body
     .container
-      = render 'devise/menu/registration_items'
-      = render 'devise/menu/login_items'
+      = render 'layouts/header'
       %section.round
         %p{:style => "color: green"}= notice
         %p{:style => "color: red"}= alert
         = yield
-//      = render 'layouts/footer'
+//     = render 'layouts/footer'
 

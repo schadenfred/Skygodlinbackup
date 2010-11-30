@@ -1,13 +1,158 @@
-// This import applies a global reset to any page that imports this stylesheet.
-@import "blueprint/reset";
+// Compass
+@import "compass/css3";
 
-// To configure blueprint, edit the partials/base.sass file.
-@import "partials/base";
+// Custom Buttons
+@import "partials/buttons";
 
-// Import all the default blueprint modules so that we can access their mixins.
-@import "blueprint";
+// Colors
+$manila:                            #FFC;
+$loam:                              #CCFF99;
+$green:                             #749a02;
+$forest:                            #91bd09;
+$cardinal:                          #C41E3A;
+$white:                             #fff;
 
-// Combine the partials into a single screen stylesheet.
-@import "partials/page";
-@import "partials/form";
-@import "partials/two_col";
+// SCSS
+
+.container {
+  width: 710px;
+}
+
+
+//@mixin background {
+//  background: #b4df5b;
+//  -moz-linear-gradient(top, #b4df5b 0%, #b4df5b 100%);
+//  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b4df5b), color-stop(100%,#b4df5b));
+//  filter {
+//    progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4df5b', endColorstr='#b4df5b',GradientType=0 );
+//  }
+//}
+
+body {
+
+  background: $manila;
+
+
+}
+
+header {
+  padding-top: 20px;
+
+  img {
+    padding: 1em;
+    background: #fff;
+  }
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+
+  h1 {
+    font-size: 200%;
+  }
+}
+
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+
+  &:hover {
+    color: #069;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: #069;
+  }
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 0.2em 0;
+
+      a {
+        padding: 0 5px;
+        font-weight: bold;
+        opacity: .7;
+
+       -moz-transition: height 1s ease-out, opacity 2s ease;
+       -webkit-transition: height 2s ease-out, opacity 2s ease;
+       -o-transition: height 1s ease-out, opacity 1s ease;
+       transition: height 1s ease-out, opacity 1s ease;
+
+	    &:hover {
+	      text-decoration: none;
+	      opacity: 1;
+        }
+
+        &:visited {
+          color: #09c;
+        }
+      }
+    }
+  }
+}
+
+/* Sign up button */
+
+a.signup_button {
+//  @include awesome;
+  @include box-shadow;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: $green;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+  opacity: .6;
+
+  @include transition-property(opacity);
+
+  &:hover {
+	opacity: 1;
+	color: #eee;
+  }
+}
+
+
+/* Round corners */
+
+.round {
+  @include border-radius;
+  @include box-shadow;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+
