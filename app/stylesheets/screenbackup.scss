@@ -1,0 +1,143 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import "blueprint/reset";
+
+// To configure blueprint, edit the partials/base.sass file.
+@import "partials/base";
+@import "partials/buttons";
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint";
+@import "blueprint/buttons";
+
+// Combine the partials into a single screen stylesheet.
+@import "partials/page";
+@import "partials/form";
+@import "partials/two_col";
+
+// Compass
+@import "compass/css3";
+
+// Custom SCSS
+
+.container {
+  padding: 20px;
+  @include container;
+}
+
+body {
+  background: $manila;
+  @include blueprint(true);
+}
+
+header {
+//   padding-top: 20px;
+//  padding: 5em;
+}
+
+header img {
+    padding: 1em;
+    background: #fff;
+}
+
+.section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+
+  section h1 {
+    font-size: 200%;
+  }
+}
+
+/* Links */
+
+a {
+  text-color: #09c;
+  text-decoration: none;
+
+  &:hover {
+    color: #09c;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: #09c;
+  }
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+  background-color: $white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.2em 0;
+
+    a {
+      padding: 0 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
+
+.signup_button {
+  @include awesome;
+  @include box-shadow;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+
+  a {
+  color: #eee;
+  text-decoration: underline;
+  }
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+.round {
+  @include border-radius(10px, 10px);
+  @include box-shadow;
+//  -moz-box-shadow: inset 0px 0px 7px #000;
+//  -webkit-box-shadow: inset 0px 0px 7px #000;
+}
+
+footer nav ul {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
