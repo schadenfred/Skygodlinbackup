@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def index
     @users = current_account.nil? ? User.all : current_account.users
   end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       check_my_account(@user.account.name)
     end
   end
-  
+
   def valid
     token_user = User.valid?(params)
     if token_user
@@ -22,3 +22,4 @@ class UsersController < ApplicationController
     redirect_to :root
   end
 end
+

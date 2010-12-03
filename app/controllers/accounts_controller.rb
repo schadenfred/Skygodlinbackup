@@ -15,8 +15,8 @@ class AccountsController < ApplicationController
   end
 
   def new
-  @account = Account.new(:user => @user)
-  respond_with(@account)
+    @account = Account.new(:user => @user)
+    respond_with(@account)
   end
 
   def create
@@ -62,3 +62,4 @@ class AccountsController < ApplicationController
     end
 
 end
+
