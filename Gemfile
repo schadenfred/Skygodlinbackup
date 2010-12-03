@@ -12,7 +12,7 @@ gem 'haml'
 gem 'haml-rails'
 
 group :development do
-  gem 'rspec-rails', '2.0.1'
+  gem 'rspec-rails', '2.2.1'
   gem 'annotate-models', '1.0.4'
   gem 'faker', '0.3.1'
   gem 'heroku'
@@ -20,7 +20,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec', '2.0.1'
+  gem 'rspec', '2.2.0'
   gem 'webrat', '0.7.1'
   gem 'spork', '0.8.4'
   gem 'factory_girl_rails', '1.0'

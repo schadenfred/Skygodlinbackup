@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe PagesController do
+  include Devise::TestHelpers
+
   render_views
 
   before(:each) do
