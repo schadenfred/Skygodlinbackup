@@ -1,3 +1,7 @@
-<h1>Rails3-Account-Devise</h1>
-<p><%= link_to "View List of all Users", users_path %></p>
-<p><%= link_to "View List of accounts", accounts_path %></p>
+<h1>Home</h1>
+<% if current_user %>
+  <p><%= link_to "View List of all Users", users_path %></p>
+  <p><%= link_to "View List of accounts", accounts_path %></p>
+<% else %>
+<% end %>
+

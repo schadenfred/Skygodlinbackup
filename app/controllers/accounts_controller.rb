@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
   end
 
   def new
+    @title = "Sign up"
     @account = Account.new(:user => @user)
     respond_with(@account)
   end

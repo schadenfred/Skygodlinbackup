@@ -10,19 +10,25 @@ Skygodlin::Application.routes.draw do
       get :valid
     end
   end
+
   resources :accounts, :only => [:index, :show]
   constraints(AccountRoute) do
     match '/' => 'sites#index'
     match '/opps' => 'sites#opps'
   end
 
-  root :to => "home#index"
+  get "users/new"
+
+#  match '/signup',  :to => 'users#new'
+  match '/signup',  :to => 'devise/registrations#new'
 
   match '/about',   :to => 'pages#about'
   match '/contact', :to => 'pages#contact'
   match '/help',    :to => 'pages#help'
   match '/terms',   :to => 'pages#terms'
   match '/privacy', :to => 'pages#privacy'
+
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

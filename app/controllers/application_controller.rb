@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
       redirect_to "/opps" , :alert => "Sorry, resource is not part of your account"
     end
   end
+
   def require_user
     unless current_user
       flash[:notice] = "You must be logged in to access this page"
